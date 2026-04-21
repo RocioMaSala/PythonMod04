@@ -12,14 +12,21 @@ def transform_data(content: str) -> None:
     print(transformed_content)
     print("\n\n---")
 
-    sys.stdout.write("Enter new file name (or empty):") # Me he quedado aquí
+    sys.stdout.write("Enter new file name (or empty):")
+    sys.stdout.flush()
     new_file_name = sys.stdin.readline().strip()
     if len(new_file_name) > 0:
-        new_file = open(new_file_name, "w")
-        print(f"Saving data to {new_file_name}")
-        new_file.write(transformed_content)
-        print(f"Data saved in file '{new_file_name}'.\n")
-        new_file.close()
+        print(f"Saving data to '{new_file_name}'")
+        try:
+            new_file = open(new_file_name, "w")
+            new_file.write(transformed_content)
+            print(f"Data saved in file '{new_file_name}'.\n")
+            new_file.close()
+        except Exception as e:
+            print(f"[STDERR] Error opening file '{new_file_name}': {e}", file=sys.stderr)
+            print("Data not saved.")
+            return
+            
     else:
         print("Not saving data.")
 
@@ -43,7 +50,7 @@ def recover_ancient_text() -> None:
             transform_data(content)
 
         except Exception as e:
-            print(f"Error opening file '{sys.argv[1]}': {e}")
+            print(f"[STDERR] Error opening file '{sys.argv[1]}': {e}", file=sys.stderr)
             return
 
 
