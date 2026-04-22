@@ -27,7 +27,7 @@ def recover_ancient_text() -> None:
     if len(sys.argv) < 2:
         print(f"Usage: {sys.argv[0]} <file>")
     else:
-        print("=== Cyber Archives Recovery ===")
+        print("=== Cyber Archives Recovery & Preservation ===")
         print(f"Accessing file '{sys.argv[1]}'")
         try:
             text = open(sys.argv[1])
