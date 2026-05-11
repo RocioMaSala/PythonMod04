@@ -4,7 +4,7 @@ def secure_archive(name: str, mode: str, content: str) -> tuple[bool, str]:
             with open(name, mode) as file:
                 data = file.read()
                 print("Using 'secure_archive' to read from a regular file:")
-                return (True, data)
+            return (True, data)
         except FileNotFoundError as e:
             print("Using 'secure_archive' to read from a nonexistent file:")
             return (False, str(e))
@@ -21,7 +21,7 @@ def secure_archive(name: str, mode: str, content: str) -> tuple[bool, str]:
                     "Using 'secure_archive' to write previous content "
                     "to a new file:")
                 file.write(content)
-                return (True, "Content successfully written to file")
+            return (True, "Content successfully written to file")
         except Exception as e:
             return (False, str(e))
     return (False, "Invalid mode")
@@ -30,14 +30,14 @@ def secure_archive(name: str, mode: str, content: str) -> tuple[bool, str]:
 if __name__ == "__main__":
     print("=== Cyber Archives Security ===\n")
 
-    print(secure_archive("foo", "r", "none"))
+    print(secure_archive("foo.txt", "r", "none"))
     print()
 
-    print(secure_archive("privado", "r", "none"))
+    print(secure_archive("privado.txt", "r", "none"))
     print()
 
     print(secure_archive("txt", "r", "none"))
     print()
 
-    print(secure_archive("nuevo", 'w', 'hola'))
+    print(secure_archive("nuevo", "w", 'hola'))
     print()
